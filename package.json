@@ -1,0 +1,31 @@
+{
+  "name": "job-agent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "search": "tsx src/cli.ts search",
+    "status": "tsx src/cli.ts status",
+    "review": "tsx src/cli.ts review",
+    "sponsors": "tsx src/cli.ts sponsors",
+    "sponsors:live": "tsx src/cli.ts sponsors-live",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^18.0.1",
+    "fast-xml-parser": "^5.11.1",
+    "playwright": "^1.63.0",
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "@types/readline-sync": "^1.4.8",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}

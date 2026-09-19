@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+config/profile.json
+config/personal.json
+data/*.json
+!data/.gitkeep
+data/h1b/
+data/myvisajobs-cache.json

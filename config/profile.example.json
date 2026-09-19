@@ -1,0 +1,6 @@
+{
+  "keywords": ["software engineer", "backend", "typescript"],
+  "excludeKeywords": ["senior staff", "principal"],
+  "locations": ["Remote", "New York"],
+  "remoteOnly": false
+}
