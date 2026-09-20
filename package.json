@@ -9,6 +9,7 @@
     "review": "tsx src/cli.ts review",
     "sponsors": "tsx src/cli.ts sponsors",
     "sponsors:live": "tsx src/cli.ts sponsors-live",
+    "serve": "tsx src/server.ts",
     "build": "tsc",
     "typecheck": "tsc --noEmit"
   },

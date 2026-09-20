@@ -40,6 +40,12 @@ flowchart TD
 
     STORE --> SPONSORSLIVE["cli.ts sponsors-live\nmyvisajobs.ts"]
     SPONSORSLIVE <--> MVJ["myvisajobs.com\npublic employer search\n(cached in data/myvisajobs-cache.json)"]
+
+    SERVER["npm run serve\nserver.ts (localhost:8765)"] --> STORE
+    SERVER --> SPONSORS
+    EXT["extension/\nChrome extension\n(runs in your logged-in browser)"] -->|save job / sponsor check| SERVER
+    LI[LinkedIn job page] -.viewed by you.-> EXT
+    IN[Indeed job page] -.viewed by you.-> EXT
 ```
 
 ## How it works
@@ -80,6 +86,14 @@ flowchart TD
 
    Both match by company name only — treat results as a lead to verify, not a
    guarantee.
+7. **LinkedIn / Indeed** (optional): neither platform has a public jobs API, and
+   scraping either would violate their ToS and risk your account. Instead,
+   [`extension/`](extension/) is a Chrome extension that runs in your own
+   logged-in browser — while you're viewing a LinkedIn or Indeed job page, it
+   shows H-1B sponsor status and a "Save to job-agent" button, syncing to
+   `data/jobs.json` via a small local server (`npm run serve`). It also flags
+   custom Easy Apply / Indeed Apply screening questions instead of guessing
+   answers to them. See [`extension/README.md`](extension/README.md) for setup.
 
 ## Setup
 
@@ -112,6 +126,7 @@ your personal data, resume path, or job-tracking history is ever committed.
 | `npm run review` | Interactively review/apply to jobs still at `new` |
 | `npm run sponsors` | Check tracked companies against USCIS H-1B data |
 | `npm run sponsors:live` | Check tracked companies against myvisajobs.com (live, cached) |
+| `npm run serve` | Start the local bridge server for the browser extension (`extension/`) |
 | `npm run typecheck` | Type-check with `tsc --noEmit` |
 
 ## Notes & caveats

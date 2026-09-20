@@ -1,4 +1,12 @@
-export type JobSource = "greenhouse" | "lever" | "remoteok" | "wwr" | "muse" | "adzuna";
+export type JobSource =
+  | "greenhouse"
+  | "lever"
+  | "remoteok"
+  | "wwr"
+  | "muse"
+  | "adzuna"
+  | "linkedin"
+  | "indeed";
 
 export interface JobListing {
   id: string; // stable id: `${source}:${sourceJobId}`
