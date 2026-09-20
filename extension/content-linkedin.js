@@ -111,8 +111,12 @@ const KNOWN_STEP_HEADINGS = ["contact info", "resume", "review your application"
 function checkEasyApplyStep() {
   const modal = document.querySelector(".jobs-easy-apply-modal, [data-test-modal-id='easy-apply-modal']");
   if (!modal) return;
-  const heading = modal.querySelector("h3, h2")?.textContent?.trim().toLowerCase() ?? "";
-  const isCustomQuestions = heading.includes("additional questions") || heading.includes("questions");
+  // The modal's own dialog title ("Apply to Acme Inc.") is an <h2>; the
+  // per-step heading ("Contact info", "Additional Questions", ...) is the
+  // only <h3> inside it — must not match the outer h2 here.
+  const stepHeadingEl = modal.querySelector("h3");
+  const heading = stepHeadingEl?.textContent?.trim().toLowerCase() ?? "";
+  const isCustomQuestions = heading.includes("questions");
   let banner = modal.querySelector("#ja-custom-question-banner");
   if (isCustomQuestions) {
     if (!banner) {
@@ -122,7 +126,7 @@ function checkEasyApplyStep() {
       banner.style.cssText =
         "background:#3a2f10;color:#fbbf24;padding:8px 12px;border-radius:6px;margin-bottom:10px;font-size:13px;";
       banner.textContent = "⚠ Custom screening question(s) below — job-agent can't answer these for you, please fill them in yourself.";
-      modal.querySelector("h3, h2")?.insertAdjacentElement("afterend", banner);
+      stepHeadingEl?.insertAdjacentElement("afterend", banner);
     }
   } else if (banner) {
     banner.remove();
