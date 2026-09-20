@@ -73,7 +73,12 @@ async function refresh() {
     saveBtn.disabled = true;
     return;
   }
-  if (currentJob && currentJob.sourceId === job.sourceId) return; // no change
+  // LinkedIn renders the title before the company name settles — if company
+  // is still blank, wait for the next mutation rather than caching this
+  // incomplete snapshot (which would otherwise never get re-checked, since
+  // the sourceId alone wouldn't change on the next mutation).
+  if (!job.company) return;
+  if (currentJob && currentJob.sourceId === job.sourceId && currentJob.company === job.company) return;
   currentJob = job;
   saveBtn.disabled = false;
   saveBtn.textContent = "Save to job-agent";

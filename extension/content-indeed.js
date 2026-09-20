@@ -69,7 +69,8 @@ if (location.hostname === "www.indeed.com") {
       saveBtn.disabled = true;
       return;
     }
-    if (currentJob && currentJob.sourceId === job.sourceId) return;
+    if (!job.company) return;
+    if (currentJob && currentJob.sourceId === job.sourceId && currentJob.company === job.company) return;
     currentJob = job;
     saveBtn.disabled = false;
     saveBtn.textContent = "Save to job-agent";
